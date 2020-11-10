@@ -1,0 +1,36 @@
+baseURL = "//brainhack-proceedings.github.io/template/"
+languageCode = "en-us"
+title = "BrainHack 2020"
+publishdir = "public"
+theme = "business-frontpage"
+
+[params]
+    author = "OHBM Brainhack 2020"
+    description = "Proceeding page."
+
+    [params.navbar]
+    name = "Ignored"
+    url = "https://ohbm.github.io/hackathon2020/"
+
+   [[params.navbar.nav]]
+    name = "About"
+    url = "https://ohbm.github.io/hackathon2020/"
+
+   [[params.navbar.nav]]
+    name = "Papers"
+    url = "https://brainhack-proceedings.github.io/papers"
+
+   [[params.navbar.nav]]
+    name = "Blog"
+    url = "https://brainhack-proceedings.github.io/blog"
+
+    [[params.navbar.nav]]
+    name = "Submit"
+    url = "https://github.com/brainhack-proceedings/submit"
+
+    [params.header]
+    name = "Brainhack proceedings"
+    tagline = "Brainhack proceedings"
+
+    [params.footer]
+        copyright = "BrainHack"

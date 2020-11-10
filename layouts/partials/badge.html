@@ -1,0 +1,7 @@
+{{if .name}}
+<a href="https://github.com/{{.name}}/actions" target="blank">
+{{end}}
+<img alt="{{.alt}}" style="display: inline-block;height:20px !important;" src="https://github.com/{{.name}}/workflows/Report/badge.svg?branch=main">
+{{if .name}}
+</a>
+{{end}}

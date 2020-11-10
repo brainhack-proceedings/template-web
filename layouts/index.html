@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="{{ .Site.LanguageCode }}">
+
+
+  <head>
+
+    {{ partial "head.html" . }}
+
+    <style>
+      .row-height{
+        height: 100vh;
+      }
+      .left{
+        height: 100%;
+        overflow-y: scroll;
+      }
+  img {
+        max-width: 95%;
+        height: auto;
+    }
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+  }
+  
+  * {
+    -ms-overflow-style: none !important;
+  }
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+  .btn {
+    background-color: rgb(59,81,94);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  /* Darker background on mouse-over */
+  .btn:hover {
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.4) !important;
+    background-color: rgb(66,67,68);
+    color: white;
+  }
+  html, body {
+    margin:0;
+  }
+  .b {
+    fill: rgb(59,81,94);
+  }
+  .a {
+    fill: rgba(83,91,96,0.5);
+  }
+  [v-cloak] {display: none}
+
+    .my-logo-font {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+    .my-font {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .box-shadow:hover {
+      box-shadow: 3px 3px 3px rgba(0,0,0,0.2) !important;
+    }
+
+    .intro {
+      background: url(/img/pattern1.png);
+      background-size: cover;
+      background-position: 50%;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    .custom_tab {
+      width: 80px;
+      min-height:50px !important;
+      color: white
+    }
+  </style>
+
+  </head>
+
+  {{ partial "navbar.html" . }}
+  {{ partial "header.html" . }}
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Show the partial report.html (artifact from pandoc job) -->
+        <div class="col-xs-12 col-sm-7 col-pull-7" style="margin-left:1rem;">
+           {{ partial "report.html" . }}
+        </div>
+        <div class="col-xs-12 col-sm-4 col-push-4">
+           {{ partial "share-buttons.html" . }}
+           <br>
+
+          {{ $myUrl := print $.Site.Data.report.report.url }}
+          {{ if $.Site.Data.report.report.binder}} 
+          {{ $u:= urls.Parse $.Site.Data.report.report.url }}
+          {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $myUrl "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red")}} {{ partial "badge_binder" (dict "name" $u.Path) }}
+          {{else}}
+          {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $myUrl "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red")}}
+          {{end}}
+          <br> 
+           <!-- TODO: Make template dynamic-->
+           <a href="https://github.com/{{$.Site.Data.ghdetails.repo}}/raw/gh-pages/pdf/brainhack-{{$.Site.Data.ghdetails.pub_name}}.pdf" download="brainhack-{{$.Site.Data.ghdetails.pub_name}}.pdf">
+           <button class="btn" style="margin-top: 1em;"><i class="fa fa-download"></i>             Download PDF</button></a>
+            
+          <h3 style="margin-top: 1em;">Abstract</h3>
+          <p> {{.Site.Data.report.report.summary}}</p>
+          <h3 style="margin-bottom: 1em;">Tags</h3>
+          <ul class="tags">
+            {{ range $ky, $lbl := .Site.Data.report.report.tags}}
+            <li class="tag">{{$lbl}}</li> 
+            {{else}}
+            <li>No tags.</li>
+          {{end}}
+          </ul>
+
+          <h3 style="margin-top: 1em;">Supplemental Materials</h3>
+          <ul>
+            {{ range $ky, $lbl := .Site.Data.report.report.supplemental}}
+            <li> <a href="{{$lbl.url}}" target="_blank">{{$lbl.name}}</a> </li>
+            {{else}}
+            <li> No supplementary material. </li>
+          {{end}}
+          </ul>
+          
+          <h3 style="margin-top: 1em;">Contributions</h3>
+          <p> {{.Site.Data.report.report.contrib}}</p>
+
+          <h3 style="margin-top: 1em;">Competing interests</h3>
+          <p> {{.Site.Data.report.report.coi}}</p>
+
+          <h3 style="margin-top: 1em;">Acknowledgements</h3>
+          <p> {{.Site.Data.report.report.acknow}}</p>
+
+          <h3 style="margin-top: 1em;">Reviewers</h3>
+          <ul>
+          {{ range $ky, $lbl := .Site.Data.report.report.reviewers}}
+            <li> <a href="https://github.com/{{$lbl.gh_handle}}" target="_blank">@{{$lbl.gh_handle}}</a> </li> 
+          {{else}}
+            <li> No reviewers </li>
+          {{end}}
+          </ul>
+
+          <h3 style="margin-top: 1em;">Event</h3>
+          <p> {{.Site.Data.report.report.event}}</p>
+
+          <h3 style="margin-top: 1em;">License</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/1280px-Cc.logo.circle.svg.png" width="30px"> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution license (CC BY 4.0)</a>
+        
+
+        </div>
+      </div>
+
+    </div>
+
+    {{ partial "footer.html" . }}
+
+      </body>
+
+</html>
