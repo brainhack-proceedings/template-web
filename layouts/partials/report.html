@@ -18,7 +18,83 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="introduction">Introduction</h1>
+
+<h1
+  style="font-weight:400! important;margin-top:5rem;margin-bottom:.5em!important;line-height:1em;margin-right:1rem! important;"
+>{{$.Site.Data.report.report.title}}</h1>
+
+<ul class="comma-list" style="font-size:1.2rem! important;margin-bottom:5px! important;">
+    {{ range $ky, $lbl := $.Site.Data.report.report.author}}
+
+    {{ if $lbl.corref }}
+      {{ $.Scratch.Set "affil" $lbl.corref}}
+    {{else}}
+    {{ $.Scratch.Set "affil" $lbl.affiliation}}
+    {{end}}
+
+    {{ range $ky2, $lbl2 := $.Site.Data.report.report.affiliations}}
+    {{if eq ($.Scratch.Get "affil") $lbl2.id}}
+    {{ $tmp := (print $lbl2.orgname ", " $lbl2.city ", " $lbl2.country) }}
+      {{ $.Scratch.Set "inst" $tmp}}
+      {{end}}
+    {{end}}
+
+    {{if $lbl.url}}
+
+    <li style="list-style: none;" data-toggle="tooltip" title={{ $.Scratch.Get "inst" }} class="red-tooltip">
+
+      <a href='{{ $lbl.url }}'><u>{{ $lbl.firstname }} {{$lbl.surname}}</u></a> 
+  </li>
+
+  {{end}}
+  {{if not $lbl.url}}
+  <li style="list-style: none;" data-toggle="tooltip"  title={{ $.Scratch.Get "inst" }}>
+  {{ $lbl.firstname }} {{$lbl.surname}}
+ </li>
+  {{end}}
+  {{end}}
+</ul>
+<br />
+
+<ul class="comma-list" style="font-size:.7rem! important;margin-bottom:5px! important;">
+  {{ range $ky, $lbl := $.Site.Data.report.report.affiliations}}
+  <li style="list-style: none;">
+    {{ $lbl.orgname }}
+  </li>
+  {{end}}
+</ul>
+
+<h2 style="margin-top: 1em;">Abstract</h2>
+<p> {{.Site.Data.report.report.summary}}</p>
+<ul class="tags">
+  {{ range $ky, $lbl := .Site.Data.report.report.tags}}
+  <li class="tag">{{$lbl}}</li> 
+  {{else}}
+  <li>No tags.</li>
+{{end}}
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+<p>In this section a mathematical model of the growing embryo will be described. This model
+will be a simplification and an idealization, and consequently a falsification. It is to be
+hoped that the features retained for discussion are those of greatest importance in the
+present state of knowledge. The model takes two slightly different forms. In one of them
+the cell theory is recognized but the cells are idealized into geometrical points. In the
+other the matter of the organism is imagined as continuously distributed. The cells are not,
+however, completely ignored, for various physical and physico-chemical characteristics of
+the matter as a whole are assumed to have values appropriate to the cellular matter. With
+either of the models one proceeds as with a physical theory and defines an entitycalled
+‘the state of the system’. One then describes how that state is to be determined from the
+state at a moment very shortly before. With either model the description of the state
+consists of two parts, the mechanical and the chemical. The mechanical part of the state
+describes the positions, masses, velocities and elastic properties of the cells, and the
+forces between them. In the continuous form of the theory essentially the same information
+is given in the form of the stress, velocity, density and elasticity of the matter. The
+chemical part of the state is given (in the cell form of theory) as the chemical composition
+of each separate cell; the diffusibility of each substance between each two adjacent cells
+rnust also be given. In the continuous form of the theory the concentrations and
+diffusibilities of each substance have to be given at each point. In determining the
+changes of state one should take into account</p>
 <p>The bibliography (<span style="background-color: light-gray"><code>report.bib</code></span>) must respect <a href="http://www.bibtex.org/Using/">BibTeX</a> format. You can cite entries in your bibliography using their tags:</p>
 <ul>
 <li><p>Cite an article: <span class="citation" data-cites="author:2010">(Doe and Doe 2010)</span></p></li>
