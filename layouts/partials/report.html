@@ -19,61 +19,6 @@
 </head>
 <body>
 
-<h1
-  style="font-weight:400! important;margin-top:5rem;margin-bottom:.5em!important;line-height:1em;margin-right:1rem! important;"
->{{$.Site.Data.report.report.title}}</h1>
-
-<ul class="comma-list" style="font-size:1.2rem! important;margin-bottom:5px! important;">
-    {{ range $ky, $lbl := $.Site.Data.report.report.author}}
-
-    {{ if $lbl.corref }}
-      {{ $.Scratch.Set "affil" $lbl.corref}}
-    {{else}}
-    {{ $.Scratch.Set "affil" $lbl.affiliation}}
-    {{end}}
-
-    {{ range $ky2, $lbl2 := $.Site.Data.report.report.affiliations}}
-    {{if eq ($.Scratch.Get "affil") $lbl2.id}}
-    {{ $tmp := (print $lbl2.orgname ", " $lbl2.city ", " $lbl2.country) }}
-      {{ $.Scratch.Set "inst" $tmp}}
-      {{end}}
-    {{end}}
-
-    {{if $lbl.url}}
-
-    <li style="list-style: none;" data-toggle="tooltip" title={{ $.Scratch.Get "inst" }} class="red-tooltip">
-
-      <a href='{{ $lbl.url }}'><u>{{ $lbl.firstname }} {{$lbl.surname}}</u></a> 
-  </li>
-
-  {{end}}
-  {{if not $lbl.url}}
-  <li style="list-style: none;" data-toggle="tooltip"  title={{ $.Scratch.Get "inst" }}>
-  {{ $lbl.firstname }} {{$lbl.surname}}
- </li>
-  {{end}}
-  {{end}}
-</ul>
-<br />
-
-<ul class="comma-list" style="font-size:.7rem! important;margin-bottom:5px! important;">
-  {{ range $ky, $lbl := $.Site.Data.report.report.affiliations}}
-  <li style="list-style: none;">
-    {{ $lbl.orgname }}
-  </li>
-  {{end}}
-</ul>
-
-<h2 style="margin-top: 1em;">Abstract</h2>
-<p> {{.Site.Data.report.report.summary}}</p>
-<ul class="tags">
-  {{ range $ky, $lbl := .Site.Data.report.report.tags}}
-  <li class="tag">{{$lbl}}</li> 
-  {{else}}
-  <li>No tags.</li>
-{{end}}
-</ul>
-
 <h2 id="introduction">Introduction</h2>
 <p>In this section a mathematical model of the growing embryo will be described. This model
 will be a simplification and an idealization, and consequently a falsification. It is to be
