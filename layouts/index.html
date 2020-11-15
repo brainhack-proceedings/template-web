@@ -149,7 +149,7 @@
             <ul>
               {{ range $ky, $lbl := .Site.Data.report.report.supplemental}}
                 {{if $lbl}}
-                  <li> <a href="{{$lbl}}" target="_blank">{{$lbl}}</a> </li>
+                  <li> <a href="{{$lbl.url}}" target="_blank">{{$lbl.name}}</a> </li>
                 {{end}}
               {{end}}
             </ul>
