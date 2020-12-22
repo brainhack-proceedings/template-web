@@ -1,85 +1,181 @@
 <!DOCTYPE html>
-
 <html lang="{{ .Site.LanguageCode }}">
-
-
   <head>
 
     {{ partial "head.html" . }}
 
     <style>
-      .row-height{
-        height: 100vh;
-      }
-      .left{
-        height: 100%;
-        overflow-y: scroll;
-      }
-  img {
+      main img {
         max-width: 95%;
         height: auto;
-    }
-    ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
-  }
-  
-  * {
-    -ms-overflow-style: none !important;
-  }
-  #content-wrap {
-    padding-bottom: 2.5rem;    /* Footer height */
-  }
-  .btn {
-    background-color: rgb(59,81,94);
-    border: none;
-    color: white;
-    padding: 12px 30px;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  /* Darker background on mouse-over */
-  .btn:hover {
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.4) !important;
-    background-color: rgb(66,67,68);
-    color: white;
-  }
-  html, body {
-    margin:0;
-  }
-  .b {
-    fill: rgb(59,81,94);
-  }
-  .a {
-    fill: rgba(83,91,96,0.5);
-  }
-  [v-cloak] {display: none}
+      }
+      main h1.title {
+        font-weight:400! important;
+        margin-top:5rem;
+        margin-bottom:.5em!important;
+        line-height:1em;
+        margin-right:1rem! important;
+      }
+      h2 {
+        font-weight: 400;
+        margin-top: 1em;
+      }
+      h3 {
+        font-weight:400;
+        line-height: 2;
+        color:#333;
+        margin:0;
+        padding:0;
+        text-transform: uppercase;
+        margin-top: 1em;
+      }
+      [v-cloak] {
+        display: none
+      }
 
-    .my-logo-font {
-      font-family: 'Roboto Condensed', sans-serif;
-    }
-    .my-font {
-      font-family: 'Roboto', sans-serif;
-    }
+      #content { flex-grow: 1; }
 
-    .box-shadow:hover {
-      box-shadow: 3px 3px 3px rgba(0,0,0,0.2) !important;
-    }
+      main p { text-align: justify; hyphens: auto; }
 
-    .intro {
-      background: url(/img/pattern1.png);
-      background-size: cover;
-      background-position: 50%;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-    }
+      main {
+        margin-left:4rem;
+        margin-right:1rem;
+      }
 
-    .custom_tab {
-      width: 80px;
-      min-height:50px !important;
-      color: white
-    }
-  </style>
+      .tags {
+        list-style: none;
+        margin: 0;
+        overflow: hidden; 
+        padding: 0;
+      }
+
+      .tags li {
+        float: left; 
+      }
+
+      .tag {
+        background: rgb(59,81,94);
+        border-radius: 3px 0 0 3px;
+        color: aliceblue;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 20px 0 23px;
+        position: relative;
+        margin: 0 10px 10px 0;
+        text-decoration: none;
+        -webkit-transition: color 0.2s;
+      }
+
+      .tag::before {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+        content: '';
+        height: 6px;
+        left: 10px;
+        position: absolute;
+        width: 6px;
+        top: 10px;
+      }
+
+      .tag::after {
+        background: #fff;
+        border-bottom: 13px solid transparent;
+        border-left: 10px solid rgb(59,81,94);
+        border-top: 13px solid transparent;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .tag:hover {
+        background-color: rgb(66,67,68);
+        color: white;
+      }
+
+      .tag:hover::after {
+        border-left-color: rgb(66,67,68); 
+      }
+
+      .comma-list {
+        display: inline;
+        list-style: none;
+        padding: 0px;
+        font-family: "Open Sans", cursive, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: large;
+      }
+      .comma-list li {
+        display: inline;
+      }
+      .comma-list li::after {
+        content: ", ";
+      }
+      .comma-list li:last-child::after {
+        content: "";
+      }
+
+      .tooltip .arrow:before {
+        border-bottom-color: rgb(0, 0, 0) !important;
+        border-top-color: rgb(0, 0, 0)!important;
+      }
+      .tooltip-inner { background-color: rgb(59,81,94); }
+
+      .color-on-hover {
+        filter: saturate(0);
+      }
+      .color-on-hover:hover {
+        filter: saturate(1);
+      }
+      .right-panel {
+        width: 222px;
+        color: #888;
+        line-height: 1.3rem;
+        margin-top: 5rem;
+        margin-left: 5rem;
+      }
+      .right-panel p {
+        font-size: 14px;
+      }
+
+      ul.suppl {
+        padding-left: 2rem;
+      }
+
+      ul.affiliations {
+        font-size: .9rem! important;
+        margin-bottom: 5px! important;
+      }
+
+      ul.affiliations li {
+        list-style: none;
+      }
+      ul.affiliations li span {
+        vertical-align: super;
+        font-size: .7rem! important;
+      }
+
+      ul.authors {
+        display: block;
+        font-size:1.2rem! important;
+        margin-bottom:5px! important;
+      }
+      ul.authors::after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      ul.authors li {
+        list-style: none;
+      }
+      ul.authors li span {
+        vertical-align: super;
+        font-size: .7rem! important;
+        margin-left: -4px;
+      }
+    </style>
 
   </head>
 
@@ -88,80 +184,142 @@
 
   <body>
 
-    <div class="container-fluid">
+    <div id="content" class="container-fluid">
       <div class="row">
-        <!-- Show the partial report.html (artifact from pandoc job) -->
-        <div class="col-xs-12 col-sm-7 col-pull-7" style="margin-left:1rem;">
-           {{ partial "report.html" . }}
-        </div>
-        <div class="col-xs-12 col-sm-4 col-push-4">
-           {{ partial "share-buttons.html" . }}
-           <br>
+        <div class="right-panel">
+          <div class="color-on-hover">
+            {{ partial "share-buttons.html" . }}
+            {{ $url := print $.Site.Data.report.report.url }}
+            {{ if $.Site.Data.report.report.binder}} 
+            {{ $u:= urls.Parse $.Site.Data.report.report.url }}
+            {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $url "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red") }} {{ partial "badge_binder" (dict "name" $u.Path) }}
+            {{ else }}
+            {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $url "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red") }}
+            {{ end }}
+            <!-- TODO: Make template dynamic-->
+            <a
+              href="https://github.com/{{ $.Site.Data.ghdetails.repo }}/raw/gh-pages/pdf/brainhack-{{ $.Site.Data.ghdetails.pub_name }}.pdf"
+              download="brainhack-{{ $.Site.Data.ghdetails.pub_name }}.pdf"
+            >
+              <button class="btn">
+                <i class="fa fa-download"></i>Download PDF
+              </button>
+            </a>
+          </div>
 
-          {{ $myUrl := print $.Site.Data.report.report.url }}
-          {{ if $.Site.Data.report.report.binder}} 
-          {{ $u:= urls.Parse $.Site.Data.report.report.url }}
-          {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $myUrl "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red")}} {{ partial "badge_binder" (dict "name" $u.Path) }}
-          {{else}}
-          {{ partial "badge" (dict "name" $.Site.Data.ghdetails.repo) }} {{ partial "badge_custom" (dict "label" "Project" "message" "Repo" "link" $myUrl "target" "_blank" "logo" "github" "logoWidth" "14" "color" "red")}}
-          {{end}}
-          <br> 
-           <!-- TODO: Make template dynamic-->
-           <a href="https://github.com/{{$.Site.Data.ghdetails.repo}}/raw/gh-pages/pdf/brainhack-{{$.Site.Data.ghdetails.pub_name}}.pdf" download="brainhack-{{$.Site.Data.ghdetails.pub_name}}.pdf">
-           <button class="btn" style="margin-top: 1em;"><i class="fa fa-download"></i>             Download PDF</button></a>
-            
-          <h3 style="margin-top: 1em;">Abstract</h3>
-          <p> {{.Site.Data.report.report.summary}}</p>
-          <h3 style="margin-bottom: 1em;">Tags</h3>
-          <ul class="tags">
-            {{ range $ky, $lbl := .Site.Data.report.report.tags}}
-            <li class="tag">{{$lbl}}</li> 
-            {{else}}
-            <li>No tags.</li>
-          {{end}}
-          </ul>
-
-          <h3 style="margin-top: 1em;">Supplemental Materials</h3>
-          <ul>
-            {{ range $ky, $lbl := .Site.Data.report.report.supplemental}}
-            <li> <a href="{{$lbl.url}}" target="_blank">{{$lbl.name}}</a> </li>
-            {{else}}
-            <li> No supplementary material. </li>
-          {{end}}
-          </ul>
+          {{ if .Site.Data.report.report.supplemental }}
+            <h3>Supplemental Materials</h3>
+            <ul class="suppl">
+              {{ range $suppl := .Site.Data.report.report.supplemental }}
+                {{ if $suppl }}
+                  <li><a href="{{ $suppl.url }}" target="_blank">{{ $suppl.name }}</a></li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
           
-          <h3 style="margin-top: 1em;">Contributions</h3>
-          <p> {{.Site.Data.report.report.contrib}}</p>
+          <h3>Contributions</h3>
+          <p>{{ .Site.Data.report.report.contrib }}</p>
 
-          <h3 style="margin-top: 1em;">Competing interests</h3>
-          <p> {{.Site.Data.report.report.coi}}</p>
+          <h3>Competing interests</h3>
+          <p>{{ .Site.Data.report.report.coi }}</p>
 
-          <h3 style="margin-top: 1em;">Acknowledgements</h3>
-          <p> {{.Site.Data.report.report.acknow}}</p>
+          <h3>Acknowledgements</h3>
+          <p>{{ .Site.Data.report.report.acknow }}</p>
 
-          <h3 style="margin-top: 1em;">Reviewers</h3>
-          <ul>
-          {{ range $ky, $lbl := .Site.Data.report.report.reviewers}}
-            <li> <a href="https://github.com/{{$lbl.gh_handle}}" target="_blank">@{{$lbl.gh_handle}}</a> </li> 
-          {{else}}
-            <li> No reviewers </li>
-          {{end}}
+          {{ if .Site.Data.report.report.reviewers}}
+            <h3>Reviewers</h3>
+            <ul>
+            {{ range $reviewer := .Site.Data.report.report.reviewers }}
+              <li><a href="https://github.com/{{ $reviewer.gh_handle }}" target="_blank">@{{ $reviewer.gh_handle }}</a> </li> 
+            {{ else }}
+              <li>No reviewers</li>
+            {{ end }}
+            </ul>
+          {{ end }}
+
+          {{ if .Site.Data.report.report.event }}
+            <h3>Event</h3>
+            <p>{{ .Site.Data.report.report.event }}</p>
+          {{ end }}
+
+          <h3>License</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/1280px-Cc.logo.circle.svg.png" width="30px">
+          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution license (CC BY 4.0)</a>
+        
+        </div>
+
+        <!-- Show the partial report.html (artifact from pandoc job) -->
+        <main class="col-xs-12 col-sm-7 col-pull-7">
+
+          <h1 class="title">{{ $.Site.Data.report.report.title }}</h1>
+
+          <ul class="comma-list authors">
+            {{ $multiaffil := gt (len $.Site.Data.report.report.affiliations) 1 }}
+            {{ $.Scratch.Set "affilnext" 0 }}
+
+            {{ range $author := $.Site.Data.report.report.author }}
+              {{ if $author.corref }}
+                {{ $.Scratch.Set "affil" $author.corref }}
+              {{ else }}
+                {{ $.Scratch.Set "affil" $author.affiliation }}
+              {{ end }}
+
+              {{ $affil := index (where $.Site.Data.report.report.affiliations "id" ($.Scratch.Get "affil")) 0 }}
+              {{ $affil_full := (print $affil.orgname ", " $affil.city ", " $affil.country) }}
+              
+              {{ if (not (in ($.Scratch.Get "affil_seen") $affil.id)) }}
+                {{ $.Scratch.Set "affilnext" (add ($.Scratch.Get "affilnext") 1) }}
+
+                {{/* Store affiliation ordering based on authorship, to add the superscript numbers */}}
+                {{ $.Scratch.Add "affil_seen" (slice $affil.id) }}
+                {{ $.Scratch.SetInMap "affil_order" (printf "%05d" ($.Scratch.Get "affilnext")) $affil.id }}
+                {{ $.Scratch.SetInMap "affil_order_inverse" $affil.id (printf "%05d" ($.Scratch.Get "affilnext")) }}
+              {{ end }}
+
+              {{ if $author.url }}
+                <li data-toggle="tooltip" title="{{ $affil_full }}" class="red-tooltip">
+                  <a href="{{ $author.url }}">
+                    {{ $author.firstname }} {{ $author.surname }}
+                    {{ if $multiaffil }}<span>{{ int (index ($.Scratch.Get "affil_order_inverse") ($.Scratch.Get "affil")) }}</span>{{ end }}
+                  </a>
+                </li>
+              {{ else }}
+                <li data-toggle="tooltip" title="{{ $affil_full }}">
+                  {{ $author.firstname }} {{ $author.surname }}
+                  {{ if $multiaffil }}<span>{{ int (index ($.Scratch.Get "affil_order_inverse") ($.Scratch.Get "affil")) }}</span>{{ end }}
+                </li>
+              {{ end }}
+            {{ end }}
           </ul>
 
-          <h3 style="margin-top: 1em;">Event</h3>
-          <p> {{.Site.Data.report.report.event}}</p>
+          <ul class="comma-list affiliations">
+            {{ range $idx, $id := $.Scratch.GetSortedMapValues "affil_order" }}
+              {{ $affil := index (where $.Site.Data.report.report.affiliations "id" $id) 0 }}
+              {{ $affil_full := print $affil.orgname ", " $affil.city ", " $affil.country }}
+              <li data-toggle="tooltip" title="{{ $affil_full }}">
+                {{ if $multiaffil }}<span>{{ add (int $idx) 1 }}</span>{{ end }}{{ $affil.orgname }}
+              </li>
+            {{ end }}
+          </ul>
 
-          <h3 style="margin-top: 1em;">License</h3>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/1280px-Cc.logo.circle.svg.png" width="30px"> <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> Creative Commons Attribution license (CC BY 4.0)</a>
-        
+          <h2>Abstract</h2>
+          <p>{{ .Site.Data.report.report.summary }}</p>
+          <ul class="tags">
+            {{ range $tag := .Site.Data.report.report.tags }}
+              <li class="tag">{{$tag}}</li> 
+            {{ else }}
+              <li>No tags.</li>
+            {{ end }}
+          </ul>
 
-        </div>
+          {{ partial "report.html" . }}
+
+        </main>
       </div>
-
     </div>
 
     {{ partial "footer.html" . }}
 
-      </body>
-
+  </body>
 </html>
