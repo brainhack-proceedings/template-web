@@ -1,17 +1,21 @@
 <style>
-  .footer {    
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 0;
+  footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgb(66,67,68)! important;
+  }
+  footer .logo {
+    font-size: 1.3rem;
   }
 </style>
-  
-<!-- Footer -->
-<footer style="background-color: rgb(66,67,68)! important;">
+
+<footer>
   <div class="container">
-    <p class="m-0 text-center text-white"><a class="text-white" href="https://github.com/brainhack-proceedings" target="_blank">BrainHack Proceedings</a></p>
+    <p class="m-0 text-center text-white">
+      <a class="text-white" href="https://github.com/brainhack-proceedings" target="_blank">
+        <span class="logo logo-brainhack">BRAINHACK</span><span class="logo logo-proceedings">Proceedings</span></a>
+      </a>
+    </p>
     <p class="m-0 text-center text-white">Copyright &copy; {{ .Site.Params.footer.copyright }} {{ now.Year }}</p>
-  </div><!-- /.container -->
+  </div>
 </footer>
