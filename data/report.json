@@ -51,8 +51,14 @@
       "tag3"
     ],
     "supplemental": [
-      "Material 1",
-      "Material 2"
+      {
+        "name": "Material 1",
+        "url": "https://material1.url"
+      },
+      {
+        "name": "Material 2",
+        "url": "https://material2.url"
+      }
     ],
     "bibliography": "report",
     "preview": "# Introduction\nThe bibliography (\\code{report.bib}) must respect …",
