@@ -50,6 +50,17 @@
       }
       html, body {
         min-height: 100vh;
+        scrollbar-width: thin;
+      }
+      body::-webkit-scrollbar {
+        width: 5px;
+      }
+      *::-webkit-scrollbar-track {
+        background: #ccc;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: #424344;
+        border-left: 1px solid #ccccccaa;
       }
       body{
         width: 100%;
@@ -57,8 +68,8 @@
         flex-direction: column;
       }
       header {
-        background-color:#424344! important;
-        background-repeat:no-repeat! important;
+        background-color: #424344! important;
+        background-repeat: no-repeat! important;
         background-position: 50%! important;
       }
       h1 {
