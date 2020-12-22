@@ -6,14 +6,15 @@ A: Figure labels are declared in the report.md
    
    Example (in report.md): 
 
-        \caption{\label{Figure-1} Your caption goes here.}
+    \caption{\label{Figure-1} Your caption goes here.}
    
    The corresponding label is Figure-1.
 
 - Template:
-            #figure_label_from_report.md{
-                    width: 60%;
-            }
+
+    #figure_label_from_report_md{
+        width: 60%;
+    }
 
 You can use any css key-value pairs that are applicable to 
 images. 
@@ -21,14 +22,13 @@ images.
 For example, you can make your figures glow on hover :
 
 #Figure-1:hover {
-        border-color: #66afe9;
-        box-shadow: 0 0 8px rgba(0,255,0, 0.6);
-        }
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(0,255,0, 0.6);
+}
 
 Have fun :)
 */
 
 #Figure-1 {
-        width: 50%;
-        
-        }
+    width: 50%;
+}
