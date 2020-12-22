@@ -57,7 +57,8 @@
       h1 {
         font-size: 2rem;
         font-weight: 300;
-
+      }
+      h1.title {
         font-weight:400! important;
         margin-top:5rem;
         margin-bottom:.5em!important;
@@ -217,7 +218,7 @@
         <!-- Show the partial report.html (artifact from pandoc job) -->
         <main class="col-xs-12 col-sm-7 col-pull-7">
 
-          <h1>{{ $.Site.Data.report.report.title }}</h1>
+          <h1 class="title">{{ $.Site.Data.report.report.title }}</h1>
 
           <ul class="comma-list authors">
             {{ $multiaffil := gt (len $.Site.Data.report.report.affiliations) 1 }}
